@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="joostwagenaar.laughder" >
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".BrowseActivity"
+            android:label="@string/username" >
+        </activity>
+        <meta-data
+            android:name="com.parse.APPLICATION_ID"
+            android:value="U2IA6ByBy4YpJeBNAOi41nx41SgQR5uxbhEF2gWR" />
+        <meta-data
+            android:name="com.parse.CLIENT_KEY"
+            android:value="2H7K0Hq8FsJtfsf6TwVwVCIkB4UjFJpZ93FGM7Of" />
+
+    </application>
+
+</manifest>
