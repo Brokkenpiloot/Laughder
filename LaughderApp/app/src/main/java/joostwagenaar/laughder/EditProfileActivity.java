@@ -1,8 +1,5 @@
 package joostwagenaar.laughder;
 
-/**
- * Created by startklaar on 5-1-2016.
- */
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -19,24 +16,28 @@ import android.widget.Toast;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
-public class BrowseActivity extends AppCompatActivity {
+/**
+ * Created by startklaar on 7-1-2016.
+ */
+public class EditProfileActivity extends AppCompatActivity{
 
     Intent logOut;
     Intent viewMatches;
-    Intent editProfile;
-
+    Intent viewProfile;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        Log.d("Joost", "Browse onCreate started");
-        setContentView(R.layout.activity_browse);
+        Log.d("Joost", "Edit profile activity created");
+        setContentView(R.layout.activity_editprofile);
+
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_browse, menu);
+        getMenuInflater().inflate(R.menu.menu_editprofile, menu);
         return true;
     }
 
@@ -64,9 +65,9 @@ public class BrowseActivity extends AppCompatActivity {
             finish();
         }
 
-        if (id == R.id.edit_profile) {
-            editProfile = new Intent (this, EditProfileActivity.class);
-            startActivity(editProfile);
+        if (id == R.id.view_profile) {
+            viewProfile = new Intent (this, BrowseActivity.class);
+            startActivity(viewProfile);
             finish();
         }
 
