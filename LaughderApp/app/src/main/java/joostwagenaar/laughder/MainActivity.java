@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     String username;
     String password;
     Intent browseScreen;
+    Intent registerScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +30,10 @@ public class MainActivity extends AppCompatActivity {
         usernameEditText = (EditText) findViewById(R.id.usernameEditText);
         passwordEditText = (EditText) findViewById(R.id.passwordEditText);
 
-        // [Optional] Power your app with Local Datastore. For more info, go to
-        // https://parse.com/docs/android/guide#local-datastore
-        Parse.enableLocalDatastore(this);
-        Parse.initialize(this);
+
         ParseObject testObject = new ParseObject("TestObject");
         testObject.put("username", "Joost");
         testObject.put("bit", "bot");
-        testObject.saveInBackground();
     }
 
     public void onLoginButtonClicked(View view)  {
@@ -55,14 +52,20 @@ public class MainActivity extends AppCompatActivity {
             Log.d("Joost", "Activity started");
             finish();
             Log.d("Joost", "Main activity finished");
-
-
         }
         else {
             Log.d("Joost", "Log in 'failed'");
             Toast.makeText(getApplicationContext(), "Please fill in both text boxes",
                     Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void onRegisterButtonClicked(View view) {
+        Log.d("Joost", "Register button clicked");
+        registerScreen = new Intent(this, RegisterActivity.class);
+        startActivity(registerScreen);
+        finish();
+
     }
 
     @Override
