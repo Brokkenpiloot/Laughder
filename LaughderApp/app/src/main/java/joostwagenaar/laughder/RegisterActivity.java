@@ -47,10 +47,17 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
             return false;
         }
+        if (password.length() < 5 || password.length() > 15  ){
+            Log.d("Joost", "Passwords too long or too short");
+            Toast.makeText(getApplicationContext(), "Passwords must be between 5 and 15 characters",
+                    Toast.LENGTH_LONG).show();
+            return false;
+        }
         //add similair if statement that checks whether username is already in use.
 
-        //add function that adds the new account to the server.
-
+        ParseObject accountObject = new ParseObject("AccountInfo");
+        accountObject.put("username", username);
+        accountObject.put("password", password);
         editProfile = new Intent (this, EditProfileActivity.class);
         startActivity(editProfile);
         finish();
