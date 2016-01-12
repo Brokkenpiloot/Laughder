@@ -30,8 +30,6 @@ public class EditProfileActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         Log.d("Joost", "Edit profile activity created");
         setContentView(R.layout.activity_editprofile);
-
-
     }
 
     @Override
@@ -43,29 +41,30 @@ public class EditProfileActivity extends AppCompatActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // Check which options item is clicked.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
 
         if (id == R.id.log_out) {
+            // Go back to MainActivity.
             logOut = new Intent (this, MainActivity.class);
+            // Add Parse log out function.
             startActivity(logOut);
             finish();
         }
 
         if (id == R.id.view_matches) {
+            // Go to the matches screen.
             viewMatches = new Intent (this, MatchActivity.class);
             startActivity(viewMatches);
             finish();
         }
 
         if (id == R.id.view_profile) {
+            // Go to the browse screen.
             viewProfile = new Intent (this, BrowseActivity.class);
             startActivity(viewProfile);
             finish();

@@ -28,7 +28,6 @@ public class MatchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d("Joost", "Main onCreate started");
         setContentView(R.layout.activity_match);
-
     }
 
     @Override
@@ -40,23 +39,23 @@ public class MatchActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // Check which options item is clicked.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
 
         if (id == R.id.log_out) {
+            // Go back to MainActivity.
             logOut = new Intent (this, MainActivity.class);
+            // Add Parse log out function.
             startActivity(logOut);
             finish();
         }
 
         if (id == R.id.view_profile) {
+            // Go to the browse screen.
             viewProfile = new Intent (this, BrowseActivity.class);
             viewProfile.putExtra("Joost", "username");
             startActivity(viewProfile);
@@ -64,6 +63,7 @@ public class MatchActivity extends AppCompatActivity {
         }
 
         if (id == R.id.edit_profile) {
+            // Go to the edit profile screen.
             editProfile = new Intent (this, EditProfileActivity.class);
             startActivity(editProfile);
             finish();
