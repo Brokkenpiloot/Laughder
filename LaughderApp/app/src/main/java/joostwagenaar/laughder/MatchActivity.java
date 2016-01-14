@@ -10,11 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
-import com.parse.Parse;
-import com.parse.ParseObject;
 
 
 public class MatchActivity extends AppCompatActivity {
@@ -48,7 +43,7 @@ public class MatchActivity extends AppCompatActivity {
 
         if (id == R.id.log_out) {
             // Go back to MainActivity.
-            logOut = new Intent (this, MainActivity.class);
+            logOut = new Intent (this, LogInActivity.class);
             // Add Parse log out function.
             startActivity(logOut);
             finish();

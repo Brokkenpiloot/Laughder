@@ -62,3 +62,13 @@ This means that the following functions are not considered necessary for my MVP:
 	- Being able to upload text from an external file like a .doc or .pdf for the text part of the profile.
 
 These functions will only be implemented if there is time left at the end of this course.
+
+## Model class
+
+Since I am using the Parse API a lot fo back end functions are done for me. In fact, I need only one object per user to be able to store all relevant information.
+Parse offers the ParseUser object, a sub-class of the Parse Object. It has all the same functionalities as a Parse Object, with more.
+The most important functions that the Parse Object has is the 'put' function. This allows me to upload a key-value pair and assign it to the relevant user.
+I could for example add "YT URL", "www.youtube.com/video/qwertyuiop" to the user in the edit profile activity, or edit it if an entry with key "YT URL" already exists.
+This allows me to very easily build profiles for each user, which will in turn allow me to browse through all users randomly and display their profiles for users to match.
+Speaking of matching, once users are matched, I can add eachother's userID to a list with key "Matches", which will record all people a user has matched with.
+Lastly, I will want to keep a log of all profiles that a user has either liked or declined, as to prevent seeing duplicate accounts.
