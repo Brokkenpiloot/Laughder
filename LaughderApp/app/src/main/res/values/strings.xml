@@ -18,5 +18,6 @@
     <string name="welcome_text_view">Hello and welcome to Laughder! Please enter a Username</string>
     <string name="password_text_view">and a password</string>
     <string name="password_text_view_2">Confirm password</string>
+    <string name="save_profile_button_text">Save Profile</string>
 
 </resources>

@@ -11,11 +11,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.parse.ParseUser;
+
 public class BrowseActivity extends AppCompatActivity {
 
     Intent logOut;
     Intent viewMatches;
     Intent editProfile;
+    ParseUser user;
 
 
     @Override
@@ -23,6 +26,7 @@ public class BrowseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d("Joost", "Browse onCreate started");
         setContentView(R.layout.activity_browse);
+        user = ParseUser.getCurrentUser();
     }
 
     @Override

@@ -19,3 +19,17 @@ Once this is possible I hope to be able to get started on making profiles, but l
 Good tutorials make all the difference. http://www.androidbegin.com/tutorial/android-parse-com-simple-login-and-signup-tutorial/
 After reading this through carefully, and understanding the lines of code I was able to implement my log in and register functionalities fairly easily.
 Some lines I could directly copy but there were some subtle differences so it took figuring out, but I got it.
+
+## 14 January ~14:00
+
+Today I wanted to delve deeper into my Parse implementations. I started off trying to finish my edit profile screen implementation. 
+This turned out to be fairly straightforward (thanks Parse!). Since the user profiles are currently only made up of two edit texts and a user's name, I only needed to 'put' strings into the user ParseUser objects.
+To do this a screen first needs to check who is logged in (one simpel line of code with parse).
+Then it checks if a user already has a profile filled in, and puts the relevant strings into the edit text boxes.
+Then users can edit the texts, and press the save button when ready. This will automatically update the values of the ParseUser's relevant key-value pairs.
+Now to finish my alpha I must be implement the browse random profiles function. This is proving to be a bit of a hurdle since Parse doesn't seem to have a random query method.
+Therefore, I will either need to make a loop that builds a list of all ParseUsers, and then choose a random entry in that list.
+Or I will need to make an id generator (every ParseUser has a randomly generated 10 character ID) that can randomize the proces of choosing a user to display.
+Alternatively, I could add my own ParseUserID key-value pair to each ParseUser, allowing me to make this proces a lot easier.
+
+

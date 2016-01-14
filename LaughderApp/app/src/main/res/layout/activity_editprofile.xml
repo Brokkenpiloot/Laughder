@@ -6,14 +6,24 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2"
+        android:id="@+id/profileTextEditText"
         android:maxLength="500"
-        android:hint="@string/edit_profile_text" />
+        android:hint="@string/edit_profile_text"
+        android:padding="10dp" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText3"
+        android:id="@+id/youTubeEditText"
         android:maxLength="100"
-        android:hint="@string/edit_profile_youtube_url" />
+        android:hint="@string/edit_profile_youtube_url"
+        android:padding="10dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save_profile_button_text"
+        android:id="@+id/saveProfileButton"
+        android:padding="10dp"
+        android:onClick="onSaveProfileButtonClicked" />
 </LinearLayout>

@@ -7,6 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+
+import com.parse.ParseUser;
 
 /**
  * Created by startklaar on 7-1-2016.
@@ -16,12 +20,30 @@ public class EditProfileActivity extends AppCompatActivity{
     Intent logOut;
     Intent viewMatches;
     Intent viewProfile;
+    EditText profileTextEditText;
+    EditText youTubeURLEditText;
+    String profileText;
+    String youTubeURL;
+    ParseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         Log.d("Joost", "Edit profile activity created");
         setContentView(R.layout.activity_editprofile);
+
+        // Find out which user is currently logged in.
+        user = ParseUser.getCurrentUser();
+
+        // Get two stored strings, and put them in the edit text, unless it's a new user.
+        profileTextEditText = (EditText) findViewById(R.id.profileTextEditText);
+        youTubeURLEditText = (EditText) findViewById(R.id.youTubeEditText);
+        profileText = user.getString("Profile text");
+        youTubeURL = user.getString("YouTube URL");
+        if (youTubeURL != null) {
+            profileTextEditText.setText(profileText);
+            youTubeURLEditText.setText(youTubeURL);
+        }
     }
 
     @Override
@@ -63,5 +85,15 @@ public class EditProfileActivity extends AppCompatActivity{
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onSaveProfileButtonClicked(View view) {
+
+        // Store the new values.
+        profileText = profileTextEditText.getText().toString();
+        youTubeURL = youTubeURLEditText.getText().toString();
+        user.put("Profile text", profileText);
+        user.put("YouTube URL", youTubeURL);
+
     }
 }
