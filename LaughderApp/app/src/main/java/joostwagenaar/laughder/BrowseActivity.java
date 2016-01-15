@@ -21,6 +21,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.List;
+import java.util.Random;
 
 public class BrowseActivity extends AppCompatActivity {
 
@@ -28,12 +29,9 @@ public class BrowseActivity extends AppCompatActivity {
     Intent viewMatches;
     Intent editProfile;
     ParseUser user;
-    ParseUser userToDisplay;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
+    Object userToDisplay;
+    List userList;
+    Random randomizer;
 
 
     @Override
@@ -43,23 +41,23 @@ public class BrowseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_browse);
         user = ParseUser.getCurrentUser();
 
-        /*
-        // Search for a ParseUser. Momentarily does not search randomly.
+        // Create a list of all parse users.
         ParseQuery<ParseUser> query = ParseUser.getQuery();
-        query.whereEqualTo("username", "barack");
         query.findInBackground(new FindCallback<ParseUser>() {
-            public void done(List<ParseUser> objects, ParseException e) {
+            public void done(List<ParseUser> allParseUsers, ParseException e) {
                 if (e == null) {
                     // The query was successful.
                     Log.d("Joost", "Barack found");
+                    userList = allParseUsers;
                 } else {
                     // Something went wrong.
                     Log.d("Joost", "Barack NOT found");
                 }
             }
         });
-        */
 
+        randomizer = new Random();
+        userToDisplay = userList.get(randomizer.nextInt(userList.size()));
     }
 
     @Override

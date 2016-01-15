@@ -29,7 +29,6 @@ public class RegisterActivity extends AppCompatActivity {
     String username;
     String password;
     String password2;
-    Integer userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
