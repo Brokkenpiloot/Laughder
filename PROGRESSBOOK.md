@@ -32,4 +32,14 @@ Therefore, I will either need to make a loop that builds a list of all ParseUser
 Or I will need to make an id generator (every ParseUser has a randomly generated 10 character ID) that can randomize the proces of choosing a user to display.
 Alternatively, I could add my own ParseUserID key-value pair to each ParseUser, allowing me to make this proces a lot easier.
 
+## 15 January ~14:45
+
+I planned to finish implementing my browse profiles functionality, unfortunatily I encountered a bug whilst showing my app to friends last night.
+This bug turned out to be pretty hard to figure out since the bug did not involve any usefull logcat errors. It seemed to be happening 'behind the screens'.
+It happened whenever I tried logging in or registering a new user. Therefore it was threatening to ruin my alpha since I couldn't enter the app, and couldn't revert back to an old version (since the code hadn't changed in that specific activity since the occurence of the bug).
+After a lot of thinking and googling I managed to figure out the problem. 
+Apparently Parse doesn't auto-log off when a new version of the app is started from Android Studio, which resulted in my Parse thinking a user was still logged in, even though the app was in the 'logged-off' part of the app.
+Therefore I was able to fix the problem by adding a 'log-off' function at start up, which will fix the issue untill I implement an auto-log-on feature for frequent users.
+Unfortunately all of this means that I have not been able to spend my day implementing my browse feature. However, I am confident I get this done in time for beta launch.
+
 

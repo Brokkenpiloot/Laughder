@@ -22,12 +22,19 @@ public class LogInActivity extends AppCompatActivity {
     String username;
     String password;
     Intent registerScreen;
+    ParseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("Joost", "Main onCreate started");
+        Log.d("Joost", "LogIn onCreate started");
         setContentView(R.layout.activity_main);
+
+        // Sign out any users that might still be logged to clear the cache.
+        // This fixes a bug where logging in or registering wasn't possible when app was wrongfully terminated.
+        ParseUser.logOut();
+        user = ParseUser.getCurrentUser();
+
     }
 
     public void onLoginButtonClicked(View view)  {

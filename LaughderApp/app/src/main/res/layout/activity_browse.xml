@@ -24,6 +24,15 @@
         android:text="@string/profile_text"
         android:textSize="12sp" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:id="@+id/profileYTURLTextView"
+        android:text="@string/profile_YTURL_text_view"
+        android:textSize="12sp" />
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="200dp"

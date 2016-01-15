@@ -8,6 +8,7 @@
     <string name="log_in">Log in</string>
     <string name="profile_name">Profile name</string>
     <string name="profile_text">Trying to make you laugh with 300 characters or less!</string>
+    <string name="profile_YTURL_text_view">www.youtube.com/examplelink</string>
     <string name="like_button">Like</string>
     <string name="decline_button">Decline</string>
     <string name="edit_profile_text">You have 500 characters to make someone laugh, so get to it!</string>

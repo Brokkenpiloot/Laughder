@@ -29,6 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
     String username;
     String password;
     String password2;
+    Integer userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public boolean onRegisterButton2Clicked(View arg0) {
+        Log.d("Joost", "Register button 2 clicked");
 
         // Import the strings put in the edit texts.
         username = usernameEditText.getText().toString().toLowerCase();
