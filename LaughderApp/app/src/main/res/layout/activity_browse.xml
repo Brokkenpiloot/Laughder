@@ -31,6 +31,7 @@
         android:paddingBottom="10dp"
         android:id="@+id/profileYTURLTextView"
         android:text="@string/profile_YTURL_text_view"
+        android:autoLink="web"
         android:textSize="12sp" />
 
     <ImageView
@@ -54,7 +55,8 @@
             android:paddingBottom="10dp"
             android:id="@+id/likeButton"
             android:text="@string/like_button"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:onClick="onLikeButtonClicked" />
 
         <Button
             android:layout_width="match_parent"
@@ -64,7 +66,8 @@
             android:paddingBottom="10dp"
             android:id="@+id/declineButton"
             android:text="@string/decline_button"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:onClick="onDeclineButtonClicked" />
 
     </LinearLayout>
 </LinearLayout>

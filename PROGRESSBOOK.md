@@ -42,4 +42,13 @@ Apparently Parse doesn't auto-log off when a new version of the app is started f
 Therefore I was able to fix the problem by adding a 'log-off' function at start up, which will fix the issue untill I implement an auto-log-on feature for frequent users.
 Unfortunately all of this means that I have not been able to spend my day implementing my browse feature. However, I am confident I get this done in time for beta launch.
 
+## 18 January ~17:00
 
+Today was a good day. I pretty much implemented the entire profile searching functionality, except for all the relevant filters (for example, duplicate profiles, or your own profile, can still pop up).
+It took me a while to get it working, since it didn't always seem to be storing everything correctly. Eventually it turned out to be two things:
+	
+	- The first problem was that I did not call saveInBackground() on the parse user at the edit profile screen. This resulted in the changes only being stored locally, meaning that an app restart would clear the data.
+	
+	- The second problem was that there was a nasty little typo somewhere in some of the getString call methods ("profileText " instead of "profileText"). Must've started in one, and copy pasted into some others.
+
+But no worries, the biggest hurdle has been taken (the random query. Certainly took me some time to figure it out). Tomorrow it's time for the chat function!

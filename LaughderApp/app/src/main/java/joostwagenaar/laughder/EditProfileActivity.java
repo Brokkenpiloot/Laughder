@@ -32,17 +32,22 @@ public class EditProfileActivity extends AppCompatActivity{
         Log.d("Joost", "Edit profile activity created");
         setContentView(R.layout.activity_editprofile);
 
+        // Clear variables.
+        profileText = null;
+        youTubeURL = null;
+
         // Find out which user is currently logged in.
         user = ParseUser.getCurrentUser();
 
         // Get two stored strings, and put them in the edit text, unless it's a new user.
         profileTextEditText = (EditText) findViewById(R.id.profileTextEditText);
         youTubeURLEditText = (EditText) findViewById(R.id.youTubeEditText);
-        profileText = user.getString("Profile text");
-        youTubeURL = user.getString("YouTube URL");
+        profileText = user.getString("profileText");
+        youTubeURL = user.getString("youTubeURL");
         if (youTubeURL != null) {
             profileTextEditText.setText(profileText);
             youTubeURLEditText.setText(youTubeURL);
+            Log.d("Joost", "User already had text and URL");
         }
     }
 
@@ -92,8 +97,9 @@ public class EditProfileActivity extends AppCompatActivity{
         // Store the new values.
         profileText = profileTextEditText.getText().toString();
         youTubeURL = youTubeURLEditText.getText().toString();
-        user.put("Profile text", profileText);
-        user.put("YouTube URL", youTubeURL);
-
+        user.put("profileText", profileText);
+        user.put("youTubeURL", youTubeURL);
+        user.saveInBackground();
+        Log.d("Joost", "Text and URL put in username");
     }
 }
