@@ -7,7 +7,6 @@ package joostwagenaar.laughder;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,10 +28,12 @@ public class BrowseActivity extends AppCompatActivity {
     Intent editProfile;
     String userTextDisplay;
     String userYouTubeURL;
+    String userID;
+    String displayedUserID;
     TextView userTextTextView;
     TextView userYouTubeURLTextView;
     ParseUser user;
-    ParseUser userToDisplay;
+    ParseUser displayedUser;
     Random randomizer;
 
 
@@ -41,9 +42,12 @@ public class BrowseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d("Joost", "Browse onCreate started");
         setContentView(R.layout.activity_browse);
+        Log.d("Joost", "Initializing users");
         user = ParseUser.getCurrentUser();
+        Log.d("Joost", "Initializing Text Views");
         userTextTextView = (TextView) findViewById(R.id.profileTextTextView);
         userYouTubeURLTextView = (TextView) findViewById(R.id.profileYTURLTextView);
+        Log.d("Joost", "Getting ready for query");
 
         // Create a list of all parse users.
         ParseQuery<ParseUser> query = ParseUser.getQuery();
@@ -53,16 +57,90 @@ public class BrowseActivity extends AppCompatActivity {
                     // The query was successful.
                     Log.d("Joost", "Barack found");
                     randomizer = new Random();
-                    userToDisplay = allParseUsers.get(randomizer.nextInt(allParseUsers.size()));
-                    userTextDisplay = userToDisplay.getString("profileText");
+                    displayedUser = allParseUsers.get(randomizer.nextInt(allParseUsers.size()));
+                    userTextDisplay = displayedUser.getString("profileText");
                     userTextTextView.setText(userTextDisplay);
-                    userYouTubeURL = userToDisplay.getString("youTubeURL");
+                    userYouTubeURL = displayedUser.getString("youTubeURL");
                     userYouTubeURLTextView.setText(userYouTubeURL);
 
 
                 } else {
                     // Something went wrong.
                     Log.d("Joost", "Barack NOT found");
+                }
+            }
+        });
+    }
+
+    public void onLikeButtonClicked(View view) {
+
+        // Add a keyvalue pair with the declined User's ID as key and a 1 as value.
+        displayedUserID = displayedUser.getString("objectId");
+        ParseUser.getCurrentUser().put(displayedUserID, 1);
+        Log.d("Joost", "This poor user has been declined: " + displayedUser.getString("objectId"));
+
+        // Check if the like is mutual. If so, add eachother to eachother's matchlist.
+        if (displayedUser.getInt(user.getString("objectId")) == 1){
+            user.getList("matches").add(displayedUser.getString("objectId"));
+            displayedUser.getList("matches").add(user.getString("objectId"));
+        }
+
+        // Clear TextViews to give a sense of progress to the user.
+        userTextTextView.setText("");
+        userYouTubeURLTextView.setText("");
+
+        // Choose a new random user.
+        ParseQuery<ParseUser> query = ParseUser.getQuery();
+        query.findInBackground(new FindCallback<ParseUser>() {
+            public void done(List<ParseUser> allParseUsers, ParseException e) {
+                if (e == null) {
+                    // The query was successful.
+                    Log.d("Joost", "Next Barack found");
+                    randomizer = new Random();
+                    displayedUser = allParseUsers.get(randomizer.nextInt(allParseUsers.size()));
+                    userTextDisplay = displayedUser.getString("profileText");
+                    userTextTextView.setText(userTextDisplay);
+                    userYouTubeURL = displayedUser.getString("youTubeURL");
+                    userYouTubeURLTextView.setText(userYouTubeURL);
+
+
+                } else {
+                    // Something went wrong.
+                    Log.d("Joost", "Next Barack NOT found");
+                }
+            }
+        });
+
+    }
+
+    public void onDeclineButtonClicked(View view) {
+
+        // Add a keyvalue pair with the declined User's ID as key and a 0 as value.
+        user.put(displayedUser.getString("objectId"), 0);
+        Log.d("Joost", "This poor user has been declined: " + displayedUser.getString("objectId"));
+
+        // Clear TextViews incase someone doesnt have a profile filled in.
+        userTextTextView.setText("");
+        userYouTubeURLTextView.setText("");
+
+        // Choose a new random user.
+        ParseQuery<ParseUser> query = ParseUser.getQuery();
+        query.findInBackground(new FindCallback<ParseUser>() {
+            public void done(List<ParseUser> allParseUsers, ParseException e) {
+                if (e == null) {
+                    // The query was successful.
+                    Log.d("Joost", "Next Barack found");
+                    randomizer = new Random();
+                    displayedUser = allParseUsers.get(randomizer.nextInt(allParseUsers.size()));
+                    userTextDisplay = displayedUser.getString("profileText");
+                    userTextTextView.setText(userTextDisplay);
+                    userYouTubeURL = displayedUser.getString("youTubeURL");
+                    userYouTubeURLTextView.setText(userYouTubeURL);
+
+
+                } else {
+                    // Something went wrong.
+                    Log.d("Joost", "Next Barack NOT found");
                 }
             }
         });
@@ -107,64 +185,5 @@ public class BrowseActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void onLikeButtonClicked(View view) {
-
-        // Clear TextViews incase someone doesnt have a profile filled in.
-        userTextTextView.setText("");
-        userYouTubeURLTextView.setText("");
-
-        // Choose a new random user.
-        ParseQuery<ParseUser> query = ParseUser.getQuery();
-        query.findInBackground(new FindCallback<ParseUser>() {
-            public void done(List<ParseUser> allParseUsers, ParseException e) {
-                if (e == null) {
-                    // The query was successful.
-                    Log.d("Joost", "Next Barack found");
-                    randomizer = new Random();
-                    userToDisplay = allParseUsers.get(randomizer.nextInt(allParseUsers.size()));
-                    userTextDisplay = userToDisplay.getString("profileText");
-                    userTextTextView.setText(userTextDisplay);
-                    userYouTubeURL = userToDisplay.getString("youTubeURL");
-                    userYouTubeURLTextView.setText(userYouTubeURL);
-
-
-                } else {
-                    // Something went wrong.
-                    Log.d("Joost", "Next Barack NOT found");
-                }
-            }
-        });
-
-    }
-
-    public void onDeclineButtonClicked(View view) {
-
-        // Clear TextViews incase someone doesnt have a profile filled in.
-        userTextTextView.setText("");
-        userYouTubeURLTextView.setText("");
-
-        // Choose a new random user.
-        ParseQuery<ParseUser> query = ParseUser.getQuery();
-        query.findInBackground(new FindCallback<ParseUser>() {
-            public void done(List<ParseUser> allParseUsers, ParseException e) {
-                if (e == null) {
-                    // The query was successful.
-                    Log.d("Joost", "Next Barack found");
-                    randomizer = new Random();
-                    userToDisplay = allParseUsers.get(randomizer.nextInt(allParseUsers.size()));
-                    userTextDisplay = userToDisplay.getString("profileText");
-                    userTextTextView.setText(userTextDisplay);
-                    userYouTubeURL = userToDisplay.getString("youTubeURL");
-                    userYouTubeURLTextView.setText(userYouTubeURL);
-
-
-                } else {
-                    // Something went wrong.
-                    Log.d("Joost", "Next Barack NOT found");
-                }
-            }
-        });
     }
 }

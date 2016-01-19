@@ -21,6 +21,8 @@ import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 import com.parse.ParseException;
 
+import java.util.Collections;
+
 public class RegisterActivity extends AppCompatActivity {
 
     EditText usernameEditText;
@@ -29,6 +31,8 @@ public class RegisterActivity extends AppCompatActivity {
     String username;
     String password;
     String password2;
+    ParseUser user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,12 +72,18 @@ public class RegisterActivity extends AppCompatActivity {
 
         // Register account if username doesn't already exist.
         // Save new user data into Parse.com Data Storage
-        ParseUser user = new ParseUser();
-        user.setUsername(username);
-        user.setPassword(password);
+        user = new ParseUser();
         user.signUpInBackground(new SignUpCallback() {
             public void done(ParseException e) {
                 if (e == null) {
+
+                    // Set user's username and password.
+                    user.setUsername(username);
+                    user.setPassword(password);
+
+                    // Create a matchlist keyvalue pair.
+                    user.put("matches", Collections.emptyList());
+
                     // Log user in and show a toast.
                     Intent editProfile = new Intent( RegisterActivity.this,
                             EditProfileActivity.class);

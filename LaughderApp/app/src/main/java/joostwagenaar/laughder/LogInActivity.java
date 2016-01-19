@@ -14,6 +14,8 @@ import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
+import java.util.Collections;
+
 
 public class LogInActivity extends AppCompatActivity {
 
@@ -62,7 +64,16 @@ public class LogInActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(),
                                         "Successfully Logged in",
                                         Toast.LENGTH_LONG).show();
+
+                                // Check if user already has a matches list.
+                                // For users made before matches implementation.
+                                if (user.getString("matches") == null) {
+                                    user.put("matches", Collections.emptyList());
+                                }
+                                
                                 finish();
+
+
                             } else {
                                 Toast.makeText(
                                         getApplicationContext(),
