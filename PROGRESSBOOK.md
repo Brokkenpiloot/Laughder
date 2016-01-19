@@ -52,3 +52,12 @@ It took me a while to get it working, since it didn't always seem to be storing 
 	- The second problem was that there was a nasty little typo somewhere in some of the getString call methods ("profileText " instead of "profileText"). Must've started in one, and copy pasted into some others.
 
 But no worries, the biggest hurdle has been taken (the random query. Certainly took me some time to figure it out). Tomorrow it's time for the chat function!
+
+## 19 January ~17:00
+
+After a pretty frustrating bugfixing patch I managed to end the day on a positive note. My match function is largely implemented, but might still encounter some bugs.
+For everyone like or decline, a integer is added ot the user object with the key being the objectId of the displayed user. 1 represents a like and 0 represents a dislike.
+After liking a profile, a check is done to see whether the displayed user had liked the user as well, and if this is the case, a match will be made.
+To be able to keep track of matches, new users will be initialized with an empty list under the key "matches". When matched, both users will have the objectId of their match added to the list.
+This list will make intializing the match screen relatively easy. I will be able to travel through the list, adding a name to the screen per match in the list.
+Hopefully I'll be able to get this done relatively easily tomorrow, so that I can start on the actual chat screen.

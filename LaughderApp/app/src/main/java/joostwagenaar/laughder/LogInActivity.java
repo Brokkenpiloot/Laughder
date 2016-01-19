@@ -67,8 +67,10 @@ public class LogInActivity extends AppCompatActivity {
 
                                 // Check if user already has a matches list.
                                 // For users made before matches implementation.
-                                if (user.getString("matches") == null) {
+                                if (user.getList("matches") == null) {
                                     user.put("matches", Collections.emptyList());
+                                    Log.d("Joost", "Old account, empty match list made");
+                                    user.saveInBackground();
                                 }
                                 
                                 finish();

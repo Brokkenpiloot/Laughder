@@ -3,6 +3,7 @@
     package="joostwagenaar.laughder" >
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SET_DEBUG_APP"/>
 
     <application
         android:name=".ParseApplication"

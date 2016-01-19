@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -29,7 +30,7 @@ public class BrowseActivity extends AppCompatActivity {
     String userTextDisplay;
     String userYouTubeURL;
     String userID;
-    String displayedUserID;
+    String displayedUserId;
     TextView userTextTextView;
     TextView userYouTubeURLTextView;
     ParseUser user;
@@ -40,14 +41,16 @@ public class BrowseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("Joost", "Browse onCreate started");
         setContentView(R.layout.activity_browse);
-        Log.d("Joost", "Initializing users");
+
+        System.out.println("Initializing users");
         user = ParseUser.getCurrentUser();
         Log.d("Joost", "Initializing Text Views");
+        System.out.println("Initializing Text Views");
         userTextTextView = (TextView) findViewById(R.id.profileTextTextView);
         userYouTubeURLTextView = (TextView) findViewById(R.id.profileYTURLTextView);
         Log.d("Joost", "Getting ready for query");
+        System.out.println("Getting ready for query");
 
         // Create a list of all parse users.
         ParseQuery<ParseUser> query = ParseUser.getQuery();
@@ -62,7 +65,8 @@ public class BrowseActivity extends AppCompatActivity {
                     userTextTextView.setText(userTextDisplay);
                     userYouTubeURL = displayedUser.getString("youTubeURL");
                     userYouTubeURLTextView.setText(userYouTubeURL);
-
+                    displayedUserId = displayedUser.getObjectId();
+                    Log.d("Joost", " "+displayedUserId);
 
                 } else {
                     // Something went wrong.
@@ -75,15 +79,24 @@ public class BrowseActivity extends AppCompatActivity {
     public void onLikeButtonClicked(View view) {
 
         // Add a keyvalue pair with the declined User's ID as key and a 1 as value.
-        displayedUserID = displayedUser.getString("objectId");
-        ParseUser.getCurrentUser().put(displayedUserID, 1);
-        Log.d("Joost", "This poor user has been declined: " + displayedUser.getString("objectId"));
+        Log.d("Joost", " "+displayedUser.getObjectId());
+        user.put(displayedUserId, 1);
+        Log.d("Joost", "This user has been liked: " + displayedUserId);
 
         // Check if the like is mutual. If so, add eachother to eachother's matchlist.
-        if (displayedUser.getInt(user.getString("objectId")) == 1){
-            user.getList("matches").add(displayedUser.getString("objectId"));
-            displayedUser.getList("matches").add(user.getString("objectId"));
+        if (displayedUser.getInt(user.getObjectId()) == 1){
+            user.getList("matches").add(displayedUser.getObjectId());
+            displayedUser.getList("matches").add(user.getObjectId());
+            Log.d("Joost", "Barack matched");
+            user.saveInBackground();
+            displayedUser.saveInBackground();
         }
+
+        else {
+            // Something went wrong.
+            Log.d("Joost", "Barack NOT matched");
+        }
+
 
         // Clear TextViews to give a sense of progress to the user.
         userTextTextView.setText("");
@@ -102,7 +115,7 @@ public class BrowseActivity extends AppCompatActivity {
                     userTextTextView.setText(userTextDisplay);
                     userYouTubeURL = displayedUser.getString("youTubeURL");
                     userYouTubeURLTextView.setText(userYouTubeURL);
-
+                    displayedUserId = displayedUser.getObjectId();
 
                 } else {
                     // Something went wrong.
@@ -110,14 +123,13 @@ public class BrowseActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     public void onDeclineButtonClicked(View view) {
 
         // Add a keyvalue pair with the declined User's ID as key and a 0 as value.
-        user.put(displayedUser.getString("objectId"), 0);
-        Log.d("Joost", "This poor user has been declined: " + displayedUser.getString("objectId"));
+        user.put(displayedUser.getObjectId(), 0);
+        Log.d("Joost", "This poor user has been declined: " + displayedUser.getObjectId());
 
         // Clear TextViews incase someone doesnt have a profile filled in.
         userTextTextView.setText("");
@@ -136,7 +148,7 @@ public class BrowseActivity extends AppCompatActivity {
                     userTextTextView.setText(userTextDisplay);
                     userYouTubeURL = displayedUser.getString("youTubeURL");
                     userYouTubeURLTextView.setText(userYouTubeURL);
-
+                    displayedUserId = displayedUser.getObjectId();
 
                 } else {
                     // Something went wrong.
