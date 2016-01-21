@@ -61,3 +61,18 @@ After liking a profile, a check is done to see whether the displayed user had li
 To be able to keep track of matches, new users will be initialized with an empty list under the key "matches". When matched, both users will have the objectId of their match added to the list.
 This list will make intializing the match screen relatively easy. I will be able to travel through the list, adding a name to the screen per match in the list.
 Hopefully I'll be able to get this done relatively easily tomorrow, so that I can start on the actual chat screen.
+
+## 21 January ~11:15
+
+Today I started working on the match screen, and immediatly made some quick progress with some help of a classmate (Niek). He advised me to use a ListView.
+With some of his guidance, and the a stackoverflow thread (http://stackoverflow.com/questions/14773264/convert-listobject-to-string-in-java) I was able to fairly quickly get my listview up and running.
+
+## 21 Januari ~17:00
+
+It took the rest of the day tweaking to get it to fully work, but it's up and running now.
+For example, getting the list to display objectId's was easy, since I had those in a list, at hand.
+However, to extract the username of each user, using their objectId, turned out to be really hard, and cracked my brain for quite a while.
+Now it's time to make all the list entries clickable. Shortclick should open chat window, longclick should spawn a delete prompt.
+If that turns out to be too difficult to implement I'll just make two buttons, like in the design doc.
+
+

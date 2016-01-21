@@ -55,10 +55,9 @@ public class LogInActivity extends AppCompatActivity {
                         public void done(ParseUser user, ParseException e) {
 
                             if (user != null) {
-                                // If user exist and authenticated, send user to browseScreen.class
+                                // If user exist and authenticated, send user to browseScreen.class.
                                 Log.d("Joost", "Log in 'accepted'");
-                                Intent intent = new Intent(
-                                        LogInActivity.this,
+                                Intent intent = new Intent(LogInActivity.this,
                                         BrowseActivity.class);
                                 startActivity(intent);
                                 Toast.makeText(getApplicationContext(),

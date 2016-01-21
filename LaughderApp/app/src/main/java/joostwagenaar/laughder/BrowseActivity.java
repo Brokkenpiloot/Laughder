@@ -36,21 +36,17 @@ public class BrowseActivity extends AppCompatActivity {
     ParseUser user;
     ParseUser displayedUser;
     Random randomizer;
+    List matches;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse);
-
-        System.out.println("Initializing users");
         user = ParseUser.getCurrentUser();
-        Log.d("Joost", "Initializing Text Views");
-        System.out.println("Initializing Text Views");
         userTextTextView = (TextView) findViewById(R.id.profileTextTextView);
         userYouTubeURLTextView = (TextView) findViewById(R.id.profileYTURLTextView);
         Log.d("Joost", "Getting ready for query");
-        System.out.println("Getting ready for query");
 
         // Create a list of all parse users.
         ParseQuery<ParseUser> query = ParseUser.getQuery();
@@ -85,11 +81,23 @@ public class BrowseActivity extends AppCompatActivity {
 
         // Check if the like is mutual. If so, add eachother to eachother's matchlist.
         if (displayedUser.getInt(user.getObjectId()) == 1){
-            user.getList("matches").add(displayedUser.getObjectId());
-            displayedUser.getList("matches").add(user.getObjectId());
-            Log.d("Joost", "Barack matched");
-            user.saveInBackground();
-            displayedUser.saveInBackground();
+
+            // Check if match is already recorded, and if not, record it.
+            if (!user.getList("matches").contains(displayedUser.getObjectId())){
+                matches = user.getList("matches");
+                matches.add(displayedUser.getObjectId());
+                user.put("matches", matches);
+                user.saveInBackground();
+            }
+            if (!displayedUser.getList("matches").contains(user.getObjectId())) {
+                matches = displayedUser.getList("matches");
+                matches.add(user.getObjectId());
+                displayedUser.put("matches", matches);
+                displayedUser.saveInBackground();
+            }
+
+            // Log, and save.
+            Log.d("Joost", "Barack matched, matchlist: " + user.getList("matches"));
         }
 
         else {
@@ -123,6 +131,9 @@ public class BrowseActivity extends AppCompatActivity {
                 }
             }
         });
+
+        // Save like.
+        user.saveInBackground();
     }
 
     public void onDeclineButtonClicked(View view) {
@@ -156,6 +167,9 @@ public class BrowseActivity extends AppCompatActivity {
                 }
             }
         });
+
+        // Save dislike.
+        user.saveInBackground();
     }
 
     @Override
