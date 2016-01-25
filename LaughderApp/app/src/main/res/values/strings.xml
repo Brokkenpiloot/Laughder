@@ -20,6 +20,10 @@
     <string name="password_text_view">and a password</string>
     <string name="password_text_view_2">Confirm password</string>
     <string name="save_profile_button_text">Save Profile</string>
-    <string name="cont_descr">Visual representation of embedded youtube player</string>
+    <string name="title_logo">Youtube Link</string>
+    <string name="btn_skip_intro">Skip Intro</string>
+
+
+    <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
 
 </resources>

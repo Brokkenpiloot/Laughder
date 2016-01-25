@@ -22,7 +22,8 @@
         </activity>
         <activity
             android:name=".BrowseActivity"
-            android:label="@string/username" >
+            android:label="@string/username"
+            android:hardwareAccelerated="true" >
         </activity>
         <activity
             android:name=".MatchActivity"
@@ -47,6 +48,9 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.my.app.myYouTubeID"
+            android:value="AIzaSyBlDmYu3f59Skb1oKZUX7O60PrCTHH2Goo" />
 
     </application>
 
