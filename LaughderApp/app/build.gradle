@@ -1,9 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'MyAndroidKey'
+            keyPassword 'okkietje'
+            storePassword 'okkietje'
+        }
+    }
     compileSdkVersion 22
     buildToolsVersion "23.0.2"
-
     defaultConfig {
         applicationId "joostwagenaar.laughder"
         minSdkVersion 15
@@ -15,6 +21,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
 }
@@ -25,4 +32,6 @@ dependencies {
     compile 'com.parse.bolts:bolts-android:1.+'
     compile 'com.parse:parse-android:1.+'
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
+    compile files('libs/google-play-services.jar')
+    compile files('libs/YouTubeAndroidPlayerApi.jar')
 }

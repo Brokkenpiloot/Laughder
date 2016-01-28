@@ -19,8 +19,15 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayer.PlayerStyle;
+import com.google.android.youtube.player.YouTubePlayerView;
+
 import java.util.List;
 import java.util.Random;
+
 
 public class BrowseActivity extends AppCompatActivity {
 
@@ -29,7 +36,6 @@ public class BrowseActivity extends AppCompatActivity {
     Intent editProfile;
     String userTextDisplay;
     String userYouTubeURL;
-    String userID;
     String displayedUserId;
     TextView userTextTextView;
     TextView userYouTubeURLTextView;
@@ -37,6 +43,9 @@ public class BrowseActivity extends AppCompatActivity {
     ParseUser displayedUser;
     Random randomizer;
     List matches;
+    static final int RECOVERY_DIALOG_REQUEST = 1;
+    YouTubePlayerView youTubeView;
+
 
 
     @Override
@@ -46,9 +55,13 @@ public class BrowseActivity extends AppCompatActivity {
         user = ParseUser.getCurrentUser();
         userTextTextView = (TextView) findViewById(R.id.profileTextTextView);
         userYouTubeURLTextView = (TextView) findViewById(R.id.profileYTURLTextView);
-        Log.d("Joost", "Getting ready for query");
+
+        // YouTube embedding.
+        youTubeView = (YouTubePlayerView) findViewById(R.id.youTubePlayer);
+        youTubeView.initialize(Config.DEVELOPER_KEY, this);
 
         // Create a list of all parse users.
+        Log.d("Joost", "Getting ready for query");
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.findInBackground(new FindCallback<ParseUser>() {
             public void done(List<ParseUser> allParseUsers, ParseException e) {

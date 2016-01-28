@@ -75,4 +75,11 @@ However, to extract the username of each user, using their objectId, turned out 
 Now it's time to make all the list entries clickable. Shortclick should open chat window, longclick should spawn a delete prompt.
 If that turns out to be too difficult to implement I'll just make two buttons, like in the design doc.
 
+## 25 Januari ~19:00
+
+Making progress with youtube embedding. I've started using the YouTube Player API, and have nearly got it to work.
+I reckon I'll be able to complete this tomorrow, after which I can start the finishing touches on my app.
+I think I'll have to drop the chat function from my MVP for now, and instead add a 'phone number' edit text as part of the registration.
+This, after a succesfull match, users can simply be displayed eachothers telephone numbers, allowing them to contact each other outside of the app.
+
 
