@@ -49,7 +49,7 @@ public class EditProfileActivity extends AppCompatActivity{
         profileText = user.getString("profileText");
         youTubeURL = user.getString("youTubeURL");
         phoneNumber = user.getString("phoneNumber");
-        if (youTubeURL != null) {
+        if (youTubeURL != null || profileText != null || phoneNumber != null ) {
             profileTextEditText.setText(profileText);
             youTubeURLEditText.setText(youTubeURL);
             phoneNumberEditText.setText(phoneNumber);

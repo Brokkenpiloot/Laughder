@@ -157,6 +157,7 @@ public class BrowseActivity extends AppCompatActivity {
         // Add a keyvalue pair with the declined User's ID as key and a 0 as value.
         user.put(displayedUser.getObjectId(), 0);
         Log.d("Joost", "This poor user has been declined: " + displayedUser.getObjectId());
+        checker = 0;
 
         // Clear TextViews incase someone doesnt have a profile filled in.
         userTextTextView.setText("");

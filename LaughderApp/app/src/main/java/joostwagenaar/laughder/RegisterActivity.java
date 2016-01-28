@@ -77,19 +77,20 @@ public class RegisterActivity extends AppCompatActivity {
         // Register account if username doesn't already exist.
         // Save new user data into Parse.com Data Storage
         user = new ParseUser();
+
+        // Set user's username and password.
+        user.setUsername(username);
+        user.setPassword(password);
+
+        // Create a matchlist keyvalue pair.
+        user.put("matches", Collections.emptyList());
+
+        // Add the user's phone number.
+        user.put("phoneNumber", phoneNumber);
+
         user.signUpInBackground(new SignUpCallback() {
             public void done(ParseException e) {
                 if (e == null) {
-
-                    // Set user's username and password.
-                    user.setUsername(username);
-                    user.setPassword(password);
-
-                    // Create a matchlist keyvalue pair.
-                    user.put("matches", Collections.emptyList());
-
-                    // Add the user's phone number.
-                    user.put("phoneNumber", phoneNumber);
 
                     // Log user in and show a toast.
                     Intent editProfile = new Intent( RegisterActivity.this,
