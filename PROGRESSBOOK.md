@@ -67,7 +67,7 @@ Hopefully I'll be able to get this done relatively easily tomorrow, so that I ca
 Today I started working on the match screen, and immediatly made some quick progress with some help of a classmate (Niek). He advised me to use a ListView.
 With some of his guidance, and the a stackoverflow thread (http://stackoverflow.com/questions/14773264/convert-listobject-to-string-in-java) I was able to fairly quickly get my listview up and running.
 
-## 21 Januari ~17:00
+## 21 January ~17:00
 
 It took the rest of the day tweaking to get it to fully work, but it's up and running now.
 For example, getting the list to display objectId's was easy, since I had those in a list, at hand.
@@ -75,4 +75,30 @@ However, to extract the username of each user, using their objectId, turned out 
 Now it's time to make all the list entries clickable. Shortclick should open chat window, longclick should spawn a delete prompt.
 If that turns out to be too difficult to implement I'll just make two buttons, like in the design doc.
 
+## 25 January ~19:00
 
+Making progress with youtube embedding. I've started using the YouTube Player API, and have nearly got it to work.
+I reckon I'll be able to complete this tomorrow, after which I can start the finishing touches on my app.
+I think I'll have to drop the chat function from my MVP for now, and instead add a 'phone number' edit text as part of the registration.
+This, after a succesfull match, users can simply be displayed eachothers telephone numbers, allowing them to contact each other outside of the app.
+
+## 27 January ~17:00
+
+Today I realised that trying to implement the YouTubePlayer at this late stage was not a good idea.
+I'm going to spend the rest of the day to restore the app to it's previous state, and will continue working on the completion of this course tomorrow.
+I'll also alter my MVP criteria.
+
+## 28 January ~11:00
+
+Demotivated by the failure to implement the YouTubePlayerFragment, I have started working towards a fully working, but downscaled MVP.
+These finishing touches include the following:
+
+	- A filter in the BrowseScreen, so that people cannot be matched with themselves. 
+
+	- An extra edittext in the register profile so that people have to add their phone numbers (to mitigate the missing chat screen).
+
+	- A checker to see if the youtube link added in the EditProfileScreen is actually a clickable youtube link.
+
+	- Maybe, if I get to it today, the possibility to click a user in the matchesscreen to see their profile, or delete them from the match list.
+
+I got my work cut out for me today... Here it goes.
