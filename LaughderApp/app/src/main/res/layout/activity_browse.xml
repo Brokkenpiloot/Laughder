@@ -34,10 +34,14 @@
         android:autoLink="web"
         android:textSize="12sp" />
 
-    <com.google.android.youtube.player.YouTubePlayerView
-        android:id="@+id/youTubePlayer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <ImageView
+        android:contentDescription="@string/cont_descr"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:id="@+id/YoutubeClipImageView"
+        android:src="@drawable/youtubeclipexample" />
 
     <LinearLayout
         android:layout_width="match_parent"
