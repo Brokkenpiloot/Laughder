@@ -22,8 +22,10 @@ public class EditProfileActivity extends AppCompatActivity{
     Intent viewProfile;
     EditText profileTextEditText;
     EditText youTubeURLEditText;
+    EditText phoneNumberEditText;
     String profileText;
     String youTubeURL;
+    String phoneNumber;
     ParseUser user;
 
     @Override
@@ -35,19 +37,23 @@ public class EditProfileActivity extends AppCompatActivity{
         // Clear variables.
         profileText = null;
         youTubeURL = null;
+        phoneNumber = null;
 
         // Find out which user is currently logged in.
         user = ParseUser.getCurrentUser();
 
-        // Get two stored strings, and put them in the edit text, unless it's a new user.
+        // Get stored strings, and put them in the edit text, unless it's a new user.
         profileTextEditText = (EditText) findViewById(R.id.profileTextEditText);
         youTubeURLEditText = (EditText) findViewById(R.id.youTubeEditText);
+        phoneNumberEditText = (EditText) findViewById(R.id.phoneNumberEditText);
         profileText = user.getString("profileText");
         youTubeURL = user.getString("youTubeURL");
+        phoneNumber = user.getString("phoneNumber");
         if (youTubeURL != null) {
             profileTextEditText.setText(profileText);
             youTubeURLEditText.setText(youTubeURL);
-            Log.d("Joost", "User already had text and URL");
+            phoneNumberEditText.setText(phoneNumber);
+            Log.d("Joost", "User already had things stored.");
         }
     }
 
@@ -97,8 +103,10 @@ public class EditProfileActivity extends AppCompatActivity{
         // Store the new values.
         profileText = profileTextEditText.getText().toString();
         youTubeURL = youTubeURLEditText.getText().toString();
+        phoneNumber = phoneNumberEditText.getText().toString();
         user.put("profileText", profileText);
         user.put("youTubeURL", youTubeURL);
+        user.put("phoneNumber", phoneNumber);
         user.saveInBackground();
         Log.d("Joost", "Text and URL put in username");
     }

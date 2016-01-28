@@ -78,7 +78,7 @@ public class LogInActivity extends AppCompatActivity {
                             } else {
                                 Toast.makeText(
                                         getApplicationContext(),
-                                        "No such user exist, please signup",
+                                        "Password and username don't match",
                                         Toast.LENGTH_LONG).show();
                             }
                         }

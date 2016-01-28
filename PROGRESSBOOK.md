@@ -102,3 +102,7 @@ These finishing touches include the following:
 	- Maybe, if I get to it today, the possibility to click a user in the matchesscreen to see their profile, or delete them from the match list.
 
 I got my work cut out for me today... Here it goes.
+
+## 28 January ~12:00
+
+Lots of progress in one hour, however, SignUpInBackGround in REgisterActivity is throwing an exception, and I'm not sure why, so gonna just commit this progress so I can compare code.

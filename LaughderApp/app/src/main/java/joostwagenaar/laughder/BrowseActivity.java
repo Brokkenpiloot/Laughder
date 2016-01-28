@@ -37,6 +37,7 @@ public class BrowseActivity extends AppCompatActivity {
     ParseUser displayedUser;
     Random randomizer;
     List matches;
+    int checker;
 
 
     @Override
@@ -44,26 +45,34 @@ public class BrowseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse);
         user = ParseUser.getCurrentUser();
+        userID = user.getObjectId();
         userTextTextView = (TextView) findViewById(R.id.profileTextTextView);
         userYouTubeURLTextView = (TextView) findViewById(R.id.profileYTURLTextView);
         Log.d("Joost", "Getting ready for query");
+        checker = 0;
 
         // Create a list of all parse users.
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.findInBackground(new FindCallback<ParseUser>() {
             public void done(List<ParseUser> allParseUsers, ParseException e) {
                 if (e == null) {
-                    // The query was successful.
-                    Log.d("Joost", "Barack found");
-                    randomizer = new Random();
-                    displayedUser = allParseUsers.get(randomizer.nextInt(allParseUsers.size()));
-                    userTextDisplay = displayedUser.getString("profileText");
-                    userTextTextView.setText(userTextDisplay);
-                    userYouTubeURL = displayedUser.getString("youTubeURL");
-                    userYouTubeURLTextView.setText(userYouTubeURL);
-                    displayedUserId = displayedUser.getObjectId();
-                    Log.d("Joost", " "+displayedUserId);
+                    // Keep randomizing until a user that is not current user is found.
+                    while (checker == 0) {
+                        Log.d("Joost", "Barack found");
+                        randomizer = new Random();
+                        displayedUser = allParseUsers.get(randomizer.nextInt(allParseUsers.size()));
+                        userTextDisplay = displayedUser.getString("profileText");
+                        userTextTextView.setText(userTextDisplay);
+                        userYouTubeURL = displayedUser.getString("youTubeURL");
+                        userYouTubeURLTextView.setText(userYouTubeURL);
+                        displayedUserId = displayedUser.getObjectId();
+                        Log.d("Joost", " " + displayedUserId);
 
+                        // If found user is not current user, leave the while loop.
+                        if (!displayedUserId.equals(userID)) {
+                            checker = 1;
+                        }
+                    }
                 } else {
                     // Something went wrong.
                     Log.d("Joost", "Barack NOT found");
@@ -78,6 +87,7 @@ public class BrowseActivity extends AppCompatActivity {
         Log.d("Joost", " "+displayedUser.getObjectId());
         user.put(displayedUserId, 1);
         Log.d("Joost", "This user has been liked: " + displayedUserId);
+        checker = 0;
 
         // Check if the like is mutual. If so, add eachother to eachother's matchlist.
         if (displayedUser.getInt(user.getObjectId()) == 1){
@@ -115,16 +125,22 @@ public class BrowseActivity extends AppCompatActivity {
         query.findInBackground(new FindCallback<ParseUser>() {
             public void done(List<ParseUser> allParseUsers, ParseException e) {
                 if (e == null) {
-                    // The query was successful.
-                    Log.d("Joost", "Next Barack found");
-                    randomizer = new Random();
-                    displayedUser = allParseUsers.get(randomizer.nextInt(allParseUsers.size()));
-                    userTextDisplay = displayedUser.getString("profileText");
-                    userTextTextView.setText(userTextDisplay);
-                    userYouTubeURL = displayedUser.getString("youTubeURL");
-                    userYouTubeURLTextView.setText(userYouTubeURL);
-                    displayedUserId = displayedUser.getObjectId();
+                    // Keep randomizing until a user that is not current user is found.
+                    while (checker == 0) {
+                        Log.d("Joost", "Next Barack found");
+                        randomizer = new Random();
+                        displayedUser = allParseUsers.get(randomizer.nextInt(allParseUsers.size()));
+                        userTextDisplay = displayedUser.getString("profileText");
+                        userTextTextView.setText(userTextDisplay);
+                        userYouTubeURL = displayedUser.getString("youTubeURL");
+                        userYouTubeURLTextView.setText(userYouTubeURL);
+                        displayedUserId = displayedUser.getObjectId();
 
+                        // If found user is not current user, leave the while loop.
+                        if (!displayedUserId.equals(userID)) {
+                            checker = 1;
+                        }
+                    }
                 } else {
                     // Something went wrong.
                     Log.d("Joost", "Next Barack NOT found");
@@ -151,16 +167,22 @@ public class BrowseActivity extends AppCompatActivity {
         query.findInBackground(new FindCallback<ParseUser>() {
             public void done(List<ParseUser> allParseUsers, ParseException e) {
                 if (e == null) {
-                    // The query was successful.
-                    Log.d("Joost", "Next Barack found");
-                    randomizer = new Random();
-                    displayedUser = allParseUsers.get(randomizer.nextInt(allParseUsers.size()));
-                    userTextDisplay = displayedUser.getString("profileText");
-                    userTextTextView.setText(userTextDisplay);
-                    userYouTubeURL = displayedUser.getString("youTubeURL");
-                    userYouTubeURLTextView.setText(userYouTubeURL);
-                    displayedUserId = displayedUser.getObjectId();
+                    // Keep randomizing until a user that is not current user is found.
+                    while (checker == 0) {
+                        Log.d("Joost", "Next Barack found");
+                        randomizer = new Random();
+                        displayedUser = allParseUsers.get(randomizer.nextInt(allParseUsers.size()));
+                        userTextDisplay = displayedUser.getString("profileText");
+                        userTextTextView.setText(userTextDisplay);
+                        userYouTubeURL = displayedUser.getString("youTubeURL");
+                        userYouTubeURLTextView.setText(userYouTubeURL);
+                        displayedUserId = displayedUser.getObjectId();
 
+                        // If found user is not current user, leave the while loop.
+                        if (!displayedUserId.equals(userID)) {
+                            checker = 1;
+                        }
+                    }
                 } else {
                     // Something went wrong.
                     Log.d("Joost", "Next Barack NOT found");

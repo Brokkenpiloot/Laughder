@@ -9,7 +9,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/welcome_text_view"
-        android:id="@+id/welcomeTextView" />
+        android:id="@+id/welcomeTextView"
+        android:paddingTop="10dp"  />
 
     <EditText
         android:layout_width="match_parent"
@@ -47,11 +48,27 @@
         android:ems="10"
         android:id="@+id/registerPasswordEditText2" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/phone_number_text_view_2"
+        android:id="@+id/registerPhoneNumberTextView" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone|number"
+        android:ems="10"
+        android:id="@+id/registerPhoneNumberEditText" />
+
     <Button
+        style="?android:attr/buttonBarButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/register_button_text"
         android:id="@+id/button"
         android:onClick="onRegisterButton2Clicked"
-        android:singleLine="true" />
+        android:singleLine="true"
+        />
 </LinearLayout>

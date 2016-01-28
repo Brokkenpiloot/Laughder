@@ -16,10 +16,12 @@
     <string name="chat_button">Chat</string>
     <string name="delete_button">Delete</string>
     <string name="register_button_text">Register</string>
-    <string name="welcome_text_view">Hello and welcome to Laughder! Please enter a Username</string>
+    <string name="welcome_text_view">Hello and welcome to Laughder! \n \nPlease enter a Username</string>
     <string name="password_text_view">and a password</string>
     <string name="password_text_view_2">Confirm password</string>
     <string name="save_profile_button_text">Save Profile</string>
     <string name="cont_descr">Visual representation of embedded youtube player</string>
+    <string name="phone_number_text_view_2">Phone number</string>
+    <string name="edit_profile_phone_number">Phone number (only number)</string>
 
 </resources>

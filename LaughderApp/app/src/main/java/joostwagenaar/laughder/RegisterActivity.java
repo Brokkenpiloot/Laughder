@@ -28,9 +28,11 @@ public class RegisterActivity extends AppCompatActivity {
     EditText usernameEditText;
     EditText passwordEditText;
     EditText password2EditText;
+    EditText phoneNumberEditText;
     String username;
     String password;
     String password2;
+    String phoneNumber;
     ParseUser user;
 
 
@@ -44,6 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
         usernameEditText = (EditText) findViewById(R.id.registerUserNameEditText);
         passwordEditText = (EditText) findViewById(R.id.registerPasswordEditText);
         password2EditText = (EditText) findViewById(R.id.registerPasswordEditText2);
+        phoneNumberEditText = (EditText) findViewById(R.id.registerPhoneNumberEditText);
     }
 
     public boolean onRegisterButton2Clicked(View arg0) {
@@ -53,6 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
         username = usernameEditText.getText().toString().toLowerCase();
         password = passwordEditText.getText().toString();
         password2 = password2EditText.getText().toString();
+        phoneNumber = phoneNumberEditText.getText().toString();
 
         // Check to see if the passwords are identical.
         if (!password2.equals(password)){
@@ -83,6 +87,9 @@ public class RegisterActivity extends AppCompatActivity {
 
                     // Create a matchlist keyvalue pair.
                     user.put("matches", Collections.emptyList());
+
+                    // Add the user's phone number.
+                    user.put("phoneNumber", phoneNumber);
 
                     // Log user in and show a toast.
                     Intent editProfile = new Intent( RegisterActivity.this,

@@ -21,7 +21,16 @@
         android:hint="@string/edit_profile_youtube_url"
         android:padding="10dp" />
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/phoneNumberEditText"
+        android:maxLength="10"
+        android:hint="@string/edit_profile_phone_number"
+        android:padding="10dp" />
+
     <Button
+        style="?android:attr/buttonBarButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/save_profile_button_text"
