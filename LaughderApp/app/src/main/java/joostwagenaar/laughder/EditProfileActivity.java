@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.parse.ParseUser;
 
@@ -34,7 +35,7 @@ public class EditProfileActivity extends AppCompatActivity{
         Log.d("Joost", "Edit profile activity created");
         setContentView(R.layout.activity_editprofile);
 
-        // Clear variables.
+        // Clear variables. Fixes a specific bug.
         profileText = null;
         youTubeURL = null;
         phoneNumber = null;
@@ -49,12 +50,13 @@ public class EditProfileActivity extends AppCompatActivity{
         profileText = user.getString("profileText");
         youTubeURL = user.getString("youTubeURL");
         phoneNumber = user.getString("phoneNumber");
-        if (youTubeURL != null || profileText != null || phoneNumber != null ) {
-            profileTextEditText.setText(profileText);
-            youTubeURLEditText.setText(youTubeURL);
-            phoneNumberEditText.setText(phoneNumber);
-            Log.d("Joost", "User already had things stored.");
-        }
+
+        // Enter existing strings into Edit Text. If this user has not yet set this, null will
+        // be entered, which will show the hints in the view.
+        profileTextEditText.setText(profileText);
+        youTubeURLEditText.setText(youTubeURL);
+        phoneNumberEditText.setText(phoneNumber);
+        Log.d("Joost", "User already had things stored.");
     }
 
     @Override
@@ -100,14 +102,26 @@ public class EditProfileActivity extends AppCompatActivity{
 
     public void onSaveProfileButtonClicked(View view) {
 
-        // Store the new values.
+        // Extract string from EditTexts.
         profileText = profileTextEditText.getText().toString();
         youTubeURL = youTubeURLEditText.getText().toString();
         phoneNumber = phoneNumberEditText.getText().toString();
-        user.put("profileText", profileText);
-        user.put("youTubeURL", youTubeURL);
-        user.put("phoneNumber", phoneNumber);
-        user.saveInBackground();
-        Log.d("Joost", "Text and URL put in username");
+
+        // Check to see if relevant input has been given.
+        if (!youTubeURL.toLowerCase().contains("youtu") && !youTubeURL.equals("")) {
+            Toast.makeText(getApplicationContext(), "That is not a relevant YouTube Link",
+                    Toast.LENGTH_LONG).show();
+        }
+
+        // Store the new values.
+        else {
+            user.put("profileText", profileText);
+            user.put("youTubeURL", youTubeURL);
+            user.put("phoneNumber", phoneNumber);
+            user.saveInBackground();
+            Log.d("Joost", "Text and URL put in username");
+            Toast.makeText(getApplicationContext(), "Profile has been saved!",
+                    Toast.LENGTH_LONG).show();
+        }
     }
 }

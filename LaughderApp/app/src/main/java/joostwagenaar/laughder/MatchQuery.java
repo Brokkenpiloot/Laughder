@@ -43,7 +43,7 @@ public class MatchQuery {
                 public void done(List<ParseObject> objects, ParseException e) {
                     if (e == null) {
                         Log.d("Joost", "User found: " + objects);
-                        matchesStringList.add(objects.get(0).getString("username"));
+                        matchesStringList.add(objects.get(0).getString("username")+" ("+objects.get(0).getString("phoneNumber")+")");
                         myAdapter.notifyDataSetChanged();
                         counter++;
                         Log.d("Joost", "Match added, with counter: "+counter);

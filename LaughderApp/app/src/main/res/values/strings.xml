@@ -7,7 +7,7 @@
     <string name="action_settings">Settings</string>
     <string name="log_in">Log in</string>
     <string name="profile_name">Profile name</string>
-    <string name="profile_text">Trying to make you laugh with 300 characters or less!</string>
+    <string name="profile_text_missing">This person does not have a profile text yet!</string>
     <string name="profile_YTURL_text_view">www.youtube.com/examplelink</string>
     <string name="like_button">Like</string>
     <string name="decline_button">Decline</string>

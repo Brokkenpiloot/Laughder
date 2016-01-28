@@ -29,18 +29,25 @@ public class RegisterActivity extends AppCompatActivity {
     EditText passwordEditText;
     EditText password2EditText;
     EditText phoneNumberEditText;
+    Intent editProfile;
     String username;
     String password;
     String password2;
     String phoneNumber;
     ParseUser user;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("Joost", "Main onCreate started");
         setContentView(R.layout.activity_register);
+
+        // Sign out any users that might still be logged to clear the cache.
+        // This fixes a bug where logging in or registering wasn't possible when app was wrongfully terminated.
+        // Also ensures users are logged out if the click back and enter this screen.
+        ParseUser.logOut();
+        user = ParseUser.getCurrentUser();
+
 
         // Assign the edit texts
         usernameEditText = (EditText) findViewById(R.id.registerUserNameEditText);
@@ -93,11 +100,12 @@ public class RegisterActivity extends AppCompatActivity {
                 if (e == null) {
 
                     // Log user in and show a toast.
-                    Intent editProfile = new Intent( RegisterActivity.this,
+                    editProfile = new Intent( RegisterActivity.this,
                             EditProfileActivity.class);
                     startActivity(editProfile);
                     Toast.makeText(getApplicationContext(), "Successfully signed up!",
                             Toast.LENGTH_LONG).show();
+                    finish();
 
                 } else {
                     Toast.makeText(getApplicationContext(),

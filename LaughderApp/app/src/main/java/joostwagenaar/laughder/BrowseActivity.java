@@ -12,9 +12,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
-import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -27,10 +27,12 @@ public class BrowseActivity extends AppCompatActivity {
     Intent logOut;
     Intent viewMatches;
     Intent editProfile;
+    String userNameDisplay;
     String userTextDisplay;
     String userYouTubeURL;
     String userID;
     String displayedUserId;
+    TextView userNameTextView;
     TextView userTextTextView;
     TextView userYouTubeURLTextView;
     ParseUser user;
@@ -44,12 +46,16 @@ public class BrowseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse);
+
+        // Initialize all relevant variables and views.
         user = ParseUser.getCurrentUser();
         userID = user.getObjectId();
+        userNameTextView = (TextView) findViewById(R.id.profileNameTextView);
         userTextTextView = (TextView) findViewById(R.id.profileTextTextView);
         userYouTubeURLTextView = (TextView) findViewById(R.id.profileYTURLTextView);
-        Log.d("Joost", "Getting ready for query");
         checker = 0;
+
+        Log.d("Joost", "Getting ready for query");
 
         // Create a list of all parse users.
         ParseQuery<ParseUser> query = ParseUser.getQuery();
@@ -59,8 +65,13 @@ public class BrowseActivity extends AppCompatActivity {
                     // Keep randomizing until a user that is not current user is found.
                     while (checker == 0) {
                         Log.d("Joost", "Barack found");
+
+                        // Pick a random entry in the list and extract the relevant information.
+                        // Set the relevant views using this information.
                         randomizer = new Random();
                         displayedUser = allParseUsers.get(randomizer.nextInt(allParseUsers.size()));
+                        userNameDisplay = displayedUser.getUsername();
+                        userNameTextView.setText(userNameDisplay);
                         userTextDisplay = displayedUser.getString("profileText");
                         userTextTextView.setText(userTextDisplay);
                         userYouTubeURL = displayedUser.getString("youTubeURL");
@@ -98,6 +109,8 @@ public class BrowseActivity extends AppCompatActivity {
                 matches.add(displayedUser.getObjectId());
                 user.put("matches", matches);
                 user.saveInBackground();
+                Toast.makeText(getApplicationContext(), "You've got a new match!",
+                        Toast.LENGTH_LONG).show();
             }
             if (!displayedUser.getList("matches").contains(user.getObjectId())) {
                 matches = displayedUser.getList("matches");
@@ -128,8 +141,13 @@ public class BrowseActivity extends AppCompatActivity {
                     // Keep randomizing until a user that is not current user is found.
                     while (checker == 0) {
                         Log.d("Joost", "Next Barack found");
+
+                        // Pick a random entry in the list and extract the relevant information.
+                        // Set the relevant views using this information.
                         randomizer = new Random();
                         displayedUser = allParseUsers.get(randomizer.nextInt(allParseUsers.size()));
+                        userNameDisplay = displayedUser.getUsername();
+                        userNameTextView.setText(userNameDisplay);
                         userTextDisplay = displayedUser.getString("profileText");
                         userTextTextView.setText(userTextDisplay);
                         userYouTubeURL = displayedUser.getString("youTubeURL");
@@ -171,8 +189,13 @@ public class BrowseActivity extends AppCompatActivity {
                     // Keep randomizing until a user that is not current user is found.
                     while (checker == 0) {
                         Log.d("Joost", "Next Barack found");
+
+                        // Pick a random entry in the list and extract the relevant information.
+                        // Set the relevant views using this information.
                         randomizer = new Random();
                         displayedUser = allParseUsers.get(randomizer.nextInt(allParseUsers.size()));
+                        userNameDisplay = displayedUser.getUsername();
+                        userNameTextView.setText(userNameDisplay);
                         userTextDisplay = displayedUser.getString("profileText");
                         userTextTextView.setText(userTextDisplay);
                         userYouTubeURL = displayedUser.getString("youTubeURL");

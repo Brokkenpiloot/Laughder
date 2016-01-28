@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -17,22 +19,20 @@ import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.BlockingQueue;
 
 
 public class MatchActivity extends AppCompatActivity {
 
-    Intent logOut;
     Intent viewProfile;
+    Intent logOut;
+    Intent browseProfile;
     Intent editProfile;
     ArrayAdapter<String> adapter;
     ArrayList<String> matchesList;
     ListView matchesListView;
-    String matchObjectID;
     List objectList;
     ParseUser user;
     int counter;
-    BlockingQueue<Boolean> conditionMet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +49,8 @@ public class MatchActivity extends AppCompatActivity {
         matchesList = new ArrayList<String>();
         counter = 0;
         Log.d("Joost", "Calling MatchQuery " + user.getList("matches"));
+
+        // Set the adapter and build the list.
         adapter = new ArrayAdapter<String>(this,R.layout.list_item, R.id.matchTextView, matchesList);
         matchesListView.setAdapter(adapter);
         MatchQuery matchQuery = new MatchQuery(adapter, objectList, matchesList);
@@ -57,7 +59,19 @@ public class MatchActivity extends AppCompatActivity {
 
 
 
+        // Start of an onclick listener
+
+        /*
+        matchesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
+                Log.d("Joost", "list item clicked (position, id):" + position + id);
+            }
+        });
+        */
+
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -85,9 +99,9 @@ public class MatchActivity extends AppCompatActivity {
 
         if (id == R.id.view_profile) {
             // Go to the browse screen.
-            viewProfile = new Intent (this, BrowseActivity.class);
-            viewProfile.putExtra("Joost", "username");
-            startActivity(viewProfile);
+            browseProfile = new Intent (this, BrowseActivity.class);
+            browseProfile.putExtra("Joost", "username");
+            startActivity(browseProfile);
             finish();
         }
 

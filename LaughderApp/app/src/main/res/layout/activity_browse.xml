@@ -7,6 +7,8 @@
 
 
     <TextView
+        android:textStyle="bold"
+        android:textColor="#009999"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
@@ -16,15 +18,19 @@
         android:textSize="30sp" />
 
     <TextView
+        android:textStyle="bold"
+        android:textColor="#99BBCC"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:id="@+id/profileTextTextView"
-        android:text="@string/profile_text"
-        android:textSize="12sp" />
+        android:text="@string/profile_text_missing"
+        android:textSize="12sp"
+        android:height="200dp"/>
 
     <TextView
+        android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
@@ -34,19 +40,11 @@
         android:autoLink="web"
         android:textSize="12sp" />
 
-    <ImageView
-        android:contentDescription="@string/cont_descr"
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:id="@+id/YoutubeClipImageView"
-        android:src="@drawable/youtubeclipexample" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="20dp">
 
         <Button
             style="?android:attr/buttonBarButtonStyle"

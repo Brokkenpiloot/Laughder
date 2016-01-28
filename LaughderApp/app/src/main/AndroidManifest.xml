@@ -22,19 +22,19 @@
         </activity>
         <activity
             android:name=".BrowseActivity"
-            android:label="@string/username" >
+            android:label="Browse" >
         </activity>
         <activity
             android:name=".MatchActivity"
-            android:label="@string/username" >
+            android:label="Matches" >
         </activity>
         <activity
             android:name=".EditProfileActivity"
-            android:label="@string/username" >
+            android:label="Profile" >
         </activity>
         <activity
             android:name=".RegisterActivity"
-            android:label="@string/username" >
+            android:label="Register" >
         </activity>
         <meta-data
             android:name="com.parse.APPLICATION_ID"

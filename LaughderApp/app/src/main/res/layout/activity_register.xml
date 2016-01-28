@@ -5,6 +5,8 @@
 
 
     <TextView
+        android:textColor="#009999"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -21,6 +23,8 @@
         android:id="@+id/registerUserNameEditText" />
 
     <TextView
+        android:textStyle="bold"
+        android:textColor="#009999"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -35,6 +39,8 @@
         android:id="@+id/registerPasswordEditText" />
 
     <TextView
+        android:textStyle="bold"
+        android:textColor="#009999"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -49,6 +55,8 @@
         android:id="@+id/registerPasswordEditText2" />
 
     <TextView
+        android:textStyle="bold"
+        android:textColor="#009999"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"

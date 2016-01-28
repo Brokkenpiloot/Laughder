@@ -106,3 +106,12 @@ I got my work cut out for me today... Here it goes.
 ## 28 January ~12:00
 
 Lots of progress in one hour, however, SignUpInBackGround in REgisterActivity is throwing an exception, and I'm not sure why, so gonna just commit this progress so I can compare code.
+
+## 28 January ~20:30
+
+Decently happy with the end result. Yes, I've had to downscale my MVP, but I've come up with reasonably functional alternatives.
+The functionalites that I had planned to implement but have had to drop were the YouTube fragment and the chat function. These proved slightly to challenging to implement under time pressure.
+Given more time I am confident that this minor has given me the tools to be able to implement them myself. In fact, I plan to keep on working on this app after the completion of this course.
+Anyways, today I managed to add the filter to the browse screen, add phone numbers to the match screen (in a string, not yet clickable unfortunately), a youtubelink checker, and a bunch of other polish level functions.
+This checker check to see if the link string contains the string "youtu". This is not foolproof of course, but will at least make it harder for jokers to put weird things there.
+All in all decently happy, the app looks reasnably well, but I could have done more with more time.
